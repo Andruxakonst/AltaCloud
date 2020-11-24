@@ -8,7 +8,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-
+    <h2 class="text-center">Телеметрия</h2>
     if (User.Identity.Name == "Andruxakonst@yandex.ru")
     {
         <p>Привет Андрей!</p>
@@ -39,8 +39,6 @@
                         </li>
                     }
 
-
-
                 </ul>
             </div>
         </nav>
@@ -48,7 +46,7 @@
 
         <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="table-responsive">
-                <h2>Телеметрия</h2>
+
                 <table class="table table-striped table-sm">
 
                     <thead>

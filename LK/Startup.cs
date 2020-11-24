@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using LK.Areas.Identity.Pages;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 
@@ -39,7 +40,7 @@ namespace LK
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddErrorDescriber<RussianIdentityErrorDescriber>();      
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddErrorDescriber<RussianIdentityErrorDescriber>();      
             // ApplicationDbContext возможно не верно! вопрос тут!!! Добавление переопределения оповещений о ошибке на файл RussianIdentityErrorDescriber
 
         }

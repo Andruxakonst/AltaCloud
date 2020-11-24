@@ -14,31 +14,35 @@
             <img src="/img/logo_dash.png" alt="Logo_maxi" />
         </div>
         <!--class="col-md-4" -->
-        <form class="d-flex flex-column justify-content-center mw-50" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Создать новую учетную запись.</h4>
-            <hr />
+        <section>
+            <form id="form_center" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Создать новую учетную запись.</h4>
+                <hr />
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group mw-50">
-                <label class="float-left" type="text">Email</label> <!--asp-for="Input.Email" -->
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="float-left" type="text">Email</label> <!--asp-for="Input.Email" -->
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
 
-            </div>
-            <div class="form-group mw-50">
-                <label class="float-left" type="text">Пароль</label> <!-- asp-for="Input.Password" -->
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group mw-50">
-                <label class="float-left" type="text">Повтор пароля</label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
+                </div>
+                <div class="form-group">
+                    <label class="float-left" type="text">Пароль</label> <!-- asp-for="Input.Password" -->
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="float-left" type="text">Повтор пароля</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Зарегистрировать</button>
-        </form>
-    </div>
+            </form>
+        </section>
+</div>
     <!-- <div class="col-md-6 col-md-offset-2  text-center">
         <section>
             <h4>Страница регистрации в системе <b>Alta-Cloud</b>.</h4>
@@ -75,4 +79,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    
 }
