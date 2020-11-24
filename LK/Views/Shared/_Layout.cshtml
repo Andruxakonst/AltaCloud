@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Alta-Cloud</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+
+                    <img src="/img/logo_min.png" alt="Logo_mini" />
+                    <b>Alta-Cloud</b>
+
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    @if (SignInManager.IsSignedIn(User))  //отображем если пользователь вошел в систему
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Мониторинг</a>
+                            </li>
+                        </ul>
+                    }
+                    </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            @{var action = ViewContext.RouteData.Values["Action"];      //проверка на то что это страница index для 
+                string link = "NotIndex";                               //объявляем и присваиваем переменной link значение NotIndex 
+                if (action != null)                                     //если action не null присваиваем значение страницы
+                {
+                    link = action!.ToString();
+                }
+
+
+            }
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <p>Вход выполнен!</p>
+
+            }
+           
+            else
+            {
+                if (link == "Index")
+                {
+                    <div class="text-center">
+                        <h1 class="display-4">Добро пожаловать в систему Alta-Cloud</h1>
+                        <p>Alta-Cloud - система мониторинга отчистных сооружений компании Alta-Group.</p>
+                        <br /> <br />
+                        <img src="/img/logo_dash.png" alt="Logo_maxi" />
+                        <br /> <br />
+                        <h5>Для работы в системе выполните вход!</h5>
+                        <br />
+                        <a type="button" class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+                        <p>Страница - @action</p>
+                    </div>
+                }
+            }
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Alta-Cloud - Alta-Group
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

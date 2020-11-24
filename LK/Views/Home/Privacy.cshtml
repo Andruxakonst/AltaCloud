@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewData["Title"] = "Мониторинг";
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>@ViewData["Title"]</h1>
+    if (User.Identity.Name == "Andruxakonst@yandex.ru")
+    {
+        <p>Привет Андрей!</p>
+    }
+    else
+    {
+        <p>Вы вошли как - @User.Identity.Name!</p>
+    }
+
+
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="home"></span>
+                            Ваши объекты <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @for (int objNum = 1; objNum < 6; objNum++)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Объект № @objNum
+                            </a>
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="table-responsive">
+                <h2>Мониторинг</h2>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h3 class="h3">Настройки графика</h3>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                                <input class="form-control" type="week" value="2011-W33" id="example-week-input">
+                                <input class="form-control" type="month" value="2011-08" id="example-month-input">
+                                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input2">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <a class="btn btn-sm btn-outline-secondary" id="VivodGraf">Вывод графиков</a>
+                    <div id="articleContent"></div>
+
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DatId</th>
+                                <th>DatTipe</th>
+                                <th>DatName</th>
+                                <th>DatZnach</th>
+                                <th>DatOnOff</th>
+                                <th>DatDataTime</th>
+                                <th>DatEdIzm</th>
+                                <th>DatMinZnach</th>
+                                <th>DatMaxZnach</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabledata">
+                        </tbody>
+                    </table>
+                    <p><input type="submit" value="Submit" /></p>
+
+                    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+                </main>
+            </div>
+        </div>
+
+
+        @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    </div>
+
+
+
+
+
+
+}
+
+<script type="text/javascript">
+    function ParseResponse(data) {
+
+        var target = $("#tabledata");                               //находим элемент с ID tabledata и помещаем его в переменную target
+        target.empty();                                             //удяляем содержимое элемента
+
+        for (var i = 0; i < data.length; i++) {
+            target.append("<tr><td>" + data[i].Id + "</td><td>"
+                + data[i].DatId + "</td><td>"
+                + data[i].DatTipe + "</td><td>"
+                + data[i].DatName + "</td></tr>"
+                + data[i].DatZnach + "</td></tr>"
+                + data[i].DatOnOff + "</td></tr>"
+                + data[i].DatDataTime + "</td></tr>"
+                + data[i].DatEdIzm + "</td></tr>"
+                + data[i].DatMinZnach + "</td></tr>"
+                + data[i].DatMaxZnach + "</td></tr>"
+
+
+
+
+            );
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>

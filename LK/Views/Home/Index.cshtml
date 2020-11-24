@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "Домашняя страница";
+}
+@using LK.Models;
+@model Datchik[]
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    if (User.Identity.Name == "Andruxakonst@yandex.ru")
+    {
+        <p>Привет Андрей!</p>
+
+
+    }
+    else
+    {
+        <p>Вы вошли как - @User.Identity.Name!</p>
+    }
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="home"></span>
+                            Ваши объекты <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @for (int objNum = 1; objNum < 6; objNum++)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Объект № @objNum
+                            </a>
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="table-responsive">
+                <h2>Телеметрия</h2>
+                <table class="table table-striped table-sm">
+
+                    <thead>
+                        <tr>
+                            <th><b>Датчик</b></th>
+                            <td><b>On\Off</b></td>
+                            <td><b>Показание</b></td>
+                            <td><b>Синхрнизирован</b></td>
+                            <td><b>min значение</b></td>
+                            <td><b>max значение</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Datchik datchik in Model)
+                        {
+                            <tr>
+                                <th>@datchik.DatName</th>
+                                <td>
+                                    @if (datchik.DatOnOff == true)
+                                    {
+                                        <p>На связи</p>
+                                    }
+                                    else
+                                    {
+                                        <p style="color:red"><b>Сбой</b></p>
+                                    }
+
+                                </td>
+                                <td>
+                                    @if (datchik.DatZnach >= datchik.DatMaxZnach | datchik.DatZnach <= datchik.DatMinZnach)
+                                    {
+                                        <p style="color:red"><b>@datchik.DatZnach @datchik.DatEdIzm</b></p>
+                                    }
+                                    else
+                                    {
+                                        <p>@datchik.DatZnach @datchik.DatEdIzm</p>
+                                    }
+
+                                </td>
+                                <td>@datchik.DatDataTime</td>
+                                <td>
+                                    @if (datchik.DatZnach <= datchik.DatMinZnach)
+                                    {
+                                        <p style="color:red"><b>@datchik.DatMinZnach @datchik.DatEdIzm</b></p>
+                                    }
+                                    else
+                                    {
+                                        <p>@datchik.DatMinZnach @datchik.DatEdIzm</p>
+                                    }
+
+                                </td>
+                                <td>
+                                    @if (datchik.DatZnach >= datchik.DatMaxZnach)
+                                    {
+                                        <p style="color:red"><b>@datchik.DatMaxZnach @datchik.DatEdIzm</b></p>
+                                    }
+                                    else
+                                    {
+                                        <p>@datchik.DatMaxZnach @datchik.DatEdIzm</p>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+}
