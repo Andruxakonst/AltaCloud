@@ -25,24 +25,27 @@
                     <partial name="_LoginPartial" />
                     @if (SignInManager.IsSignedIn(User))  //отображем если пользователь вошел в систему
                     {
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Мониторинг</a>
-                            </li>
-                        </ul>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Мониторинг</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Docs">Документы</a>
+                    </li>
+                </ul>
                     }
-                    </div>
+                </div>
             </div>
         </nav>
     </header>
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
-            @{var action = ViewContext.RouteData.Values["Action"];      //проверка на то что это страница index для 
-                string link = "NotIndex";                               //объявляем и присваиваем переменной link значение NotIndex 
+            @{var action = ViewContext.RouteData.Values["Action"];      //проверка на то что это страница index для
+                string link = "NotIndex";                               //объявляем и присваиваем переменной link значение NotIndex
                 if (action != null)                                     //если action не null присваиваем значение страницы
                 {
                     link = action!.ToString();
@@ -52,10 +55,10 @@
             }
             @if (SignInManager.IsSignedIn(User))
             {
-                
+
 
             }
-           
+
             else
             {
                 if (link == "Index")
@@ -69,7 +72,7 @@
                         <h5>Для работы в системе выполните вход!</h5>
                         <br />
                         <a type="button" class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Войти</a>
-                        
+
                     </div>
                 }
             }
@@ -85,5 +88,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-</body>
-</html>
+
+
+</body >
+</html >
+
+
+
+
+    
+

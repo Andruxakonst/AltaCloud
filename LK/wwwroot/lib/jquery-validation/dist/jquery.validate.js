@@ -3,7 +3,7 @@
  *
  * https://jqueryvalidation.org/
  *
- * Copyright (c) 2017 Jörn Zaefferer
+ * Copyright (c) 2017 JГ¶rn Zaefferer
  * Released under the MIT license
  */
 (function( factory ) {
@@ -267,7 +267,7 @@ $.validator.format = function( source, params ) {
 	return source;
 };
 
-$.extend( $.validator, {
+$.extend( $.validator, {  // проверить тут сообщения
 
 	defaults: {
 		messages: {},
@@ -359,25 +359,7 @@ $.extend( $.validator, {
 		$.extend( $.validator.defaults, settings );
 	},
 
-	messages: {
-		required: "Это поле необходимо заполнить.",
-		remote: "Пожалуйста, введите правильное значение.",
-		email: "Пожалуйста, введите корректный адрес электронной почты.",
-		url: "Пожалуйста, введите корректный URL.",
-		date: "Пожалуйста, введите корректную дату.",
-		dateISO: "Пожалуйста, введите корректную дату в формате ISO.",
-		number: "Пожалуйста, введите число.",
-		digits: "Пожалуйста, вводите только цифры.",
-		creditcard: "Пожалуйста, введите правильный номер кредитной карты.",
-		equalTo: "Пожалуйста, введите такое же значение ещё раз.",
-		extension: "Пожалуйста, выберите файл с правильным расширением.",
-		maxlength: $.validator.format("Пожалуйста, введите не больше {0} символов."),
-		minlength: $.validator.format("Пожалуйста, введите не меньше {0} символов."),
-		rangelength: $.validator.format("Пожалуйста, введите значение длиной от {0} до {1} символов."),
-		range: $.validator.format("Пожалуйста, введите число от {0} до {1}."),
-		max: $.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),
-		min: $.validator.format("Пожалуйста, введите число, большее или равное {0}."),
-		step: $.validator.format("Пожалуйста, введите кратное {0}.")
+	messages:{required:"Это обязательное поле.",remote: "Пожалуйста, введите правильное значение.",email: "Пожалуйста, введите корректный адрес электронной почты.",url: "Пожалуйста, введите корректный URL.",date: "Пожалуйста, введите корректную дату.",dateISO: "Пожалуйста, введите корректную дату в формате ISO.",number: "Пожалуйста, введите число.",digits: "Пожалуйста, вводите только цифры.",creditcard: "Пожалуйста, введите правильный номер кредитной карты.",equalTo: "Пожалуйста, введите такое же значение ещё раз.",extension: "Пожалуйста, выберите файл с правильным расширением.",maxlength: $.validator.format( "Пожалуйста, введите не больше {0} символов." ),minlength: $.validator.format( "Пожалуйста, введите не меньше {0} символов." ),rangelength: $.validator.format( "Пожалуйста, введите значение длиной от {0} до {1} символов." ),range: $.validator.format( "Пожалуйста, введите число от {0} до {1}." ),max: $.validator.format( "Пожалуйста, введите число, меньшее или равное {0}." ),min: $.validator.format( "Пожалуйста, введите число, большее или равное {0}." ),step: $.validator.format("РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ РєСЂР°С‚РЅРѕРµ {0}.")
 	},
 
 	autoCreateRanges: false,
@@ -815,15 +797,15 @@ $.extend( $.validator, {
 			return true;
 		},
 
-		// Return the custom message for the given element and validation method
-		// specified in the element's HTML5 data attribute
-		// return the generic message if present and no method specific message is present
+		// Возвращает пользовательское сообщение для данного элемента и метода проверки
+		// задается в атрибуте данных HTML5 элемента
+		// верните общее сообщение, если оно присутствует, и нет сообщения, специфичного для метода
 		customDataMessage: function( element, method ) {
 			return $( element ).data( "msg" + method.charAt( 0 ).toUpperCase() +
 				method.substring( 1 ).toLowerCase() ) || $( element ).data( "msg" );
 		},
 
-		// Return the custom message for the given element name and validation method
+		// Возвращает пользовательское сообщение для данного имени элемента и метода проверки
 		customMessage: function( name, method ) {
 			var m = this.settings.messages[ name ];
 			return m && ( m.constructor === String ? m : m[ method ] );
