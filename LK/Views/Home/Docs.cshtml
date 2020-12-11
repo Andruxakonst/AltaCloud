@@ -16,66 +16,79 @@
     }
 
 
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
-                <ul class="nav flex-column">
+<div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="sidebar-sticky pt-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <span data-feather="home"></span>
+                        Ваши объекты <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                @for (int objNum = 1; objNum < 6; objNum++)
+                {
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <span data-feather="home"></span>
-                            Ваши объекты <span class="sr-only">(current)</span>
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Объект № @objNum
                         </a>
                     </li>
-                    @for (int objNum = 1; objNum < 6; objNum++)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Объект № @objNum
-                            </a>
-                        </li>
-                    }
+                }
 
 
 
-                </ul>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
+        <div class="table-responsive">
+
+
+
+            <h3 class="text-center">Схема</h3>
+            <div class="text-center">
+                <img class="rounded" id="shema_docs" src="~/img/shema.jpg" alt="Alternate Text" />
             </div>
-        </nav>
+            <hr>
+            <div class="d-flex flex-nowrap justify-content-around">
+                <div>
+                    <h3>Документация</h3>
+                    <ul id="docs_docs">
 
+                        @for (int objNum = 1; objNum < 6; objNum++)
+                        {
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <img src="~/img/file-text.svg" alt="File" />
+                                    Документ @objNum
+                                </a>
+                            </li>
+                            ;
+                        }
 
-        <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top">
-            <div class="table-responsive">
-
-
-
-                <h3>Схема</h3>
-                <div class="text-center">
-                    <img class="rounded" id="shema_docs" src="~/img/shema.jpg" alt="Alternate Text" />
+                    </ul>
+                    <form>
+                        <div class="form-group">
+                            <label for="FileUpload">Загрузка документа</label>
+                            <input type="file" class="form-control-file" id="FileUpload">
+                        </div>
+                    </form>
                 </div>
-                <h3>Документация</h3>
-                <ul id="docs_docs">
-
-                    @for (int objNum = 1; objNum < 6; objNum++)
-                    {
-                        <li>
-                            <a class="nav-link" href="#">
-                                <img src="~/img/file-text.svg" alt="File" />
-                                Документ @objNum
-                            </a>
-                        </li>
-                        ;
-                    }
-
-                </ul>
-                <form>
-                    <div class="form-group">
-                        <label for="FileUpload">Загрузка документа</label>
-                        <input type="file" class="form-control-file" id="FileUpload">
+                <div>
+                    <h3>Контакты сотрудника</h3>
+                    <div id="docs_kontakti">
+                        <p>ФИО: <b>Иванов Иван Иванович</b></p>
+                        <p>Телефон: <a href="#">+7(999)123-34-67</a></p>
+                        <p>E-mail: <a href="#">IvanoII@mail.ru</a></p>
                     </div>
-                </form>
 
-
+                </div>
             </div>
         </div>
     </div>
-}
+    
+ </div>
+    }

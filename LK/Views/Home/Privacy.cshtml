@@ -67,10 +67,12 @@
             <div id="articleContent"></div>
 
 
-            
 
-            <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1538" height="649" style="display: block; width: 1538px; height: 649px;"></canvas>
-
+            <div class="flex-lg-wrap">
+                <canvas class="my-4 chartjs-render-monitor" id="myChart"  style="display: block; width: 50%; height: 25%;"></canvas>
+                <canvas class="my-4 chartjs-render-monitor" id="myChart1" style="display: block; width: 50%; height: 35%;"></canvas>
+                <canvas class="my-4 chartjs-render-monitor" id="myChart2" style="display: block; width: 50%; height: 50%;"></canvas>
+            </div>
 
         </div>
     </div>
@@ -81,13 +83,75 @@
     <script src="~/js/Chart.min.js"></script>
 
     <script>
+        $("#VivodGraf").click(function () {
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+        
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30"],
                 datasets: [{
-                    data: [25, 28, 40, 39, 38, 36, 32, 28, 25, 26, 25, 26],
+                    data: [getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50), getRandomInt(10, 50)],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#008d00',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#00c100'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        });
+
+        var ctx = document.getElementById("myChart1");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30"],
+                datasets: [{
+                    data: [getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100), getRandomInt(50, 100)],
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#0000c9',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#0000ff'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }]
+                },
+                legend: {
+                    display: false,
+                }
+            }
+        });
+
+        var ctx = document.getElementById("myChart2");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30"],
+                datasets: [{
+                    data: [getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200), getRandomInt(50, 200)],
                     lineTension: 0,
                     backgroundColor: 'transparent',
                     borderColor: '#007bff',
@@ -108,6 +172,7 @@
                 }
             }
         });
+     });
     </script>
 
 }

@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LK.Models;
 
-namespace TestEntityMySql.Controllers
+namespace LK.Controllers
 {
     public class HomeController : Controller
     {
+        
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -161,7 +163,7 @@ namespace TestEntityMySql.Controllers
             };
 
 
-            return View(arrayDatchik);
+           return View(arrayDatchik);
 
         }
 
