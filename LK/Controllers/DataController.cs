@@ -21,15 +21,15 @@ namespace LK.Controllers
         }
         public async Task<IActionResult> Data()
         {
-            return View(await db.Users.ToListAsync());
+            return View(await db.Datas.ToListAsync());
         }
         [HttpPost]
-        public async Task<IActionResult> GetUsers() //public async string Hello(int id)
+        public async Task<IActionResult> GetDatas() //public async string Hello(int id)
         {
             //int ID = id;
             //string hello = "Ваш ID - ";
             //User user = await db.Users.FirstOrDefaultAsync(p => p.Id == id);
-            return Json(await db.Users.ToListAsync());
+            return Json(await db.Datas.ToListAsync());
         }
         // GET: DataController
         //Передать в тестовую въюшку

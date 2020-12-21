@@ -1,69 +1,70 @@
-﻿@model IEnumerable<LK.Models.User> // Подключаем модель, в которую контроллер занисал данные из БД
+﻿@model IEnumerable<LK.Models.Data> // Подключаем модель, в которую контроллер занисал данные из БД
 
 @{
     ViewData["Title"] = "Test_JQuary_Conection";
 }
 <table class="table" id="message">
-    <tr><td>id</td><td>Имя</td><td>Возраст</td></tr>
+    <tr><td>item.Id</td><td>item.objName</td><td>item.datType</td><td>item.value</td><td>item.datMin</td><td>item.datMax</td></tr>
 
 </table>
-<form id="form">
-    <!--method="post" action="~/Data/Hello"-->
-    <!--<label id="message"></label><br />-->
-
-    
+<!--<form id="form">
+    method="post" action="~/Data/Hello"
+<label id="message"></label><br />
 
 
-    <input type="number" id="search" name="id" /><br />
-    <input type='button' id="submit" value="Отправить" />
-</form>
 
 
-<table class="table">
-    <tr><td>Имя</td><td>Возраст</td></tr>
-    @foreach (var item in Model)
-    {
-        <tr><td>@item.Name</td><td>@item.Age</td></tr>
-    }
-</table>
+<input type="number" id="search" name="id" />
+<br />
+<input type='button' id="submit" value="Отправить" />
+</form>-->
+
+
+
 
 <script type="text/javascript">
+
+    setInterval(function () {
+        $("#message tr").remove();
+        $("#message").html("<tr><td>item.Id</td><td>item.objName</td><td>item.datType</td><td>item.value</td><td>item.datMin</td><td>item.datMax</td></tr>");
+        let id_test = 10;
+        //console.log("id_test = 10");
+        $.ajax({
+            url: "/Data/GetDatas",
+            dataType: "JSON", // Для использования JSON формата получаемых данных
+            method: "POST", // Что бы воспользоваться POST методом, меняем данную строку на POST
+            //data: { id: id_test },
+            success: function (data) {
+                //alert(data);     //выведет "Текст"
+                //$("#message").html(data);
+                for (var key in data) {
+                    var item = data[key];
+                    //$("#message").html("<tr><td>Id</td><td>Имя</td><td>Возраст</td></tr>");
+                    //$("#message").html("<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.age+"</td></tr>");
+                    //console.log(item.id);
+                    //console.log(item.name);
+                    //console.log(item.age);
+                    $("#message").append($("<tr><td>" + item.id + "</td><td>" + item.objName + "</td><td>" + item.datType + "</td><td>" + item.value + "</td><td>" + item.datMin + "</td><td>" + item.datMax + "</td></tr>"));
+
+
+                    //let tr = $("#message").createElement('tr');
+                    //let td = $("#message").createElement('td');
+                    //td.innerHTML = item.id;
+                    //tr.appendChild(td);
+                    //td.innerHTML = item.name;
+                    //tr.appendChild(td);
+                    //td.innerHTML = item.age;
+                    //tr.appendChild(td);
+                    //table.appendChild(tr);
+                }
+            }
+        });
+    }, 10000); // 1000 м.сек
 
     $("#submit").click(function () {
 
 
-            let id_test = 10;
-            //console.log("id_test = 10");
-            $.ajax({
-                url: "/Data/GetUsers",
-                dataType: "JSON", // Для использования JSON формата получаемых данных
-                method: "POST", // Что бы воспользоваться POST методом, меняем данную строку на POST
-                //data: { id: id_test },
-                success: function (data) {
-                    //alert(data);     //выведет "Текст"
-                    //$("#message").html(data);
-                    for (var key in data) {
-                        var item = data[key];
-                        //$("#message").html("<tr><td>Id</td><td>Имя</td><td>Возраст</td></tr>");
-                        //$("#message").html("<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.age+"</td></tr>");
-                        //console.log(item.id);
-                        //console.log(item.name);
-                        //console.log(item.age);
-                        $("#message").append($("<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.age + "</td></tr>"));
 
-
-                        //let tr = $("#message").createElement('tr');
-                        //let td = $("#message").createElement('td');
-                        //td.innerHTML = item.id;
-                        //tr.appendChild(td);
-                        //td.innerHTML = item.name;
-                        //tr.appendChild(td);
-                        //td.innerHTML = item.age;
-                        //tr.appendChild(td);
-                        //table.appendChild(tr);
-                    }
-                }
-            });
-        });
+    });
 
 </script>
