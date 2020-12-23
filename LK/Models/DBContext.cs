@@ -11,7 +11,7 @@ namespace LK.Models
 {
     public class DBContext : DbContext //Обязательное наследоване от класса DbContext
     {
-        public DbSet<Data> Datas { get; set; } // Users будет таблица в БД user  
+        public DbSet<Data> Datas { get; set; } // данные в базе данных data
         public DBContext(DbContextOptions<DBContext> options)
             : base(options)
         {

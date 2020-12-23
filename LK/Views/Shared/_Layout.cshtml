@@ -14,8 +14,8 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
 
-                    <img src="/img/logo_min.png" alt="Logo_mini" />
-                    <b>Alta-Cloud</b>
+                    <img id="alta_logo"src="/img/alta_logo.png" alt="Logo_mini" />
+                    
 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,13 +36,16 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Docs">Документы</a>
                     </li>
-                        @if (User.Identity.Name == "Andruxakonst@yandex.ru")
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Data" asp-action="Data">Пользователи</a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Data" asp-action="Data">Опрос базы данных</a>
+                    </li>
+                    @if (User.Identity.Name == "Andruxakonst@yandex.ru")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Data" asp-action="Data">Пользователи</a>
+                        </li>
 
-                        }
+                    }
 
                 </ul>
                     }

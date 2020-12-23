@@ -4,67 +4,55 @@
     ViewData["Title"] = "Test_JQuary_Conection";
 }
 <table class="table" id="message">
-    <tr><td>item.Id</td><td>item.objName</td><td>item.datType</td><td>item.value</td><td>item.datMin</td><td>item.datMax</td></tr>
+    <tr id="dat_table"><td>item.Id</td><td>item.objName</td><td>item.datType</td><td>item.value</td><td>item.datMin</td><td>item.datMax</td></tr>
 
 </table>
-<!--<form id="form">
-    method="post" action="~/Data/Hello"
-<label id="message"></label><br />
 
-
-
-
-<input type="number" id="search" name="id" />
-<br />
-<input type='button' id="submit" value="Отправить" />
-</form>-->
 
 
 
 
 <script type="text/javascript">
 
-    setInterval(function () {
-        $("#message tr").remove();
-        $("#message").html("<tr><td>item.Id</td><td>item.objName</td><td>item.datType</td><td>item.value</td><td>item.datMin</td><td>item.datMax</td></tr>");
-        let id_test = 10;
-        //console.log("id_test = 10");
-        $.ajax({
-            url: "/Data/GetDatas",
-            dataType: "JSON", // Для использования JSON формата получаемых данных
-            method: "POST", // Что бы воспользоваться POST методом, меняем данную строку на POST
-            //data: { id: id_test },
-            success: function (data) {
-                //alert(data);     //выведет "Текст"
-                //$("#message").html(data);
-                for (var key in data) {
-                    var item = data[key];
-                    //$("#message").html("<tr><td>Id</td><td>Имя</td><td>Возраст</td></tr>");
-                    //$("#message").html("<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.age+"</td></tr>");
-                    //console.log(item.id);
-                    //console.log(item.name);
-                    //console.log(item.age);
-                    $("#message").append($("<tr><td>" + item.id + "</td><td>" + item.objName + "</td><td>" + item.datType + "</td><td>" + item.value + "</td><td>" + item.datMin + "</td><td>" + item.datMax + "</td></tr>"));
-
-
-                    //let tr = $("#message").createElement('tr');
-                    //let td = $("#message").createElement('td');
-                    //td.innerHTML = item.id;
-                    //tr.appendChild(td);
-                    //td.innerHTML = item.name;
-                    //tr.appendChild(td);
-                    //td.innerHTML = item.age;
-                    //tr.appendChild(td);
-                    //table.appendChild(tr);
-                }
+    $.ajax({
+        url: "/Data/GetDatas",
+        dataType: "JSON", // Для использования JSON формата получаемых данных
+        method: "POST", // Что бы воспользоваться POST методом, меняем данную строку на POST
+        success: function (data) {
+            //alert(data.length);
+            for (var i = 1; i < data.length -1; i++) {
+                
+                $("#message").append($('<tr id="row_' + i + '"><td id="Id_' + i + '">N/A</td><td id="objName_' + i + '">N/A</td><td id="datType_' + i + '">N/A</td><td id="value_' + i + '">N/A</td><td id="datMin_' + i + '">N/A</td><td id="datMax_' + i + '">N/A</td></tr>'));
             }
-        });
-    }, 10000); // 1000 м.сек
+            setInterval(function () {
+                $.ajax({
+                    url: "/Data/GetDatas",
+                    dataType: "JSON", // Для использования JSON формата получаемых данных
+                    method: "POST", // Что бы воспользоваться POST методом, меняем данную строку на POST
+                    success: function (data) {
+                        for (var key in data) {
+                                var item = data[key];
+                            let j = Number(key) + 1;
+                        
+                            //console.log("key - " + key + " j- " + j + " item.id - " + item.id + "#Id_ + j =" + '#Id_' + j);
+                            $("#Id_" + j).text(item.id);
+                            $("#objName_" + j).text(item.objName);
+                            $("#datType_" + j).text(item.datType);
+                            $("#value_" + j).text(item.value);
+                            $("#datMin_" + j).text(item.datMin);
+                            $("#datMax_" + j).text(item.datMax);
+                   
+                        }
+                    }
+                });
 
-    $("#submit").click(function () {
-
-
-
+            }, 1000); // 10000 м.сек или 10 секунд
+                        
+        }
     });
+
+
+
+    
 
 </script>
